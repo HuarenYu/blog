@@ -1,0 +1,35 @@
+{%extends "base.html"%}
+{%block css%}
+<link href="/css/vs.css" rel="stylesheet">
+<style type="text/css">
+    pre {
+        padding: 0;
+        font-size: 14px;
+    }
+</style>
+{%endblock%}
+{%block content%}
+<div id="content" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{post.title}}</h2>
+            <article id="postContent">
+            {{post.contentCompiled | safe }}
+            </article>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12"></div>
+    </div>
+</div>
+{%endblock%}
+{%block js%}
+<script src="/js/highlight.min.js"></script>
+<script type="text/javascript">
+  $(function() {
+    $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
+  });
+</script>
+{%endblock%}

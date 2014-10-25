@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>文若的博客 - {{title}}</title>
+  <!-- Bootstrap -->
+  <link href="/css/site.css" rel="stylesheet">
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  {%block css%}
+  {%endblock%}
+</head>
+<body>
+  {%block header%}
+  <header id="header" class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="header-bar">
+          <div class="logo pull-left">
+            <a href="/">
+              <img src="/img/logo.png" alt="文若的博客">
+            </a>
+          </div>
+          <ul class="nav nav-pills pull-right header-nav" role="tablist">
+            <li {%if index%}class="active"{%endif%}>
+              <a href="/">首页</a>
+            </li>
+            <li role="presentation" class="dropdown">
+              <a id="topNav" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                分类<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="topNav">
+                {%for c in categorys%}
+                <li>
+                  <a href="/post/list?category={{c._id}}">{{c.name}}</a>
+                </li>
+                {%endfor%}
+              </ul>
+            </li>
+            <li>
+              <a href="/about">关于</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+  {%endblock%} 
+
+  {%block content%}
+   
+  {%endblock%} 
+
+  {%block footer%}
+  <footer id="footer" class="container">
+    <hr>
+    &copy;&nbsp;2014&nbsp;&nbsp;文若
+    <div class="contact">
+      <a class="gray-link" href="http://weibo.com/u/1891991231" target="_blank"><i class="iconfont">&#xf01af;</i></a>
+      <a class="gray-link" href="https://github.com/HuarenYu" target="_blank"><i class="iconfont">&#xf01ca;</i></a>
+    </div>
+  </footer>
+  {%endblock%}
+  <script src="/js/site.js"></script>
+  {%block js%}
+  {%endblock%}
+</body>
+</html>
