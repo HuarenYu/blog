@@ -1,0 +1,29 @@
+{%extends "base.html"%}
+{%block content%}
+<div id="content" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="post-list">
+            {%for post in pageObj.posts%}
+                <li>
+                    <article class="post-info">
+                        <h4><a href="/post/detail/{{post._id}}" target="_blank">{{post.title}}</a></h4>
+                        <div class="post-excerpt">
+                           {{post.excerpt | shorten(140)}}......
+                        </div>
+                        <div class="post-handle-bar">
+                            {{post.createDate | dateFormat('YYYY-MM-DD')}}
+                        </div>
+                    </article>
+                </li>
+            {%endfor%}
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 page">
+        {{pageObj | pagination | safe}}
+        </div>
+    </div>
+</div>
+{%endblock%}

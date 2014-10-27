@@ -89,4 +89,16 @@ router.post('/create', auth, function(req, res, next) {
 	});
 });
 
+router.get('/admin', auth, function(req, res, next) {
+	Post.findByPage(req, function(err, pageObj) {
+		if (err) {
+			next(err);
+			return;
+		}
+		req.title = '文章管理';
+        req.pageObj = pageObj;
+        res.render('post/admin.html', req);
+	});
+});
+
 module.exports = router;
