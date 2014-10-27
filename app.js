@@ -10,6 +10,7 @@ var nunjucksFilters = require('./libs/nunjucksfilters');
 var globalVariables = require('./libs/globalvariables');
 var routes = require('./routes/index');
 var post = require('./routes/post');
+var category = require('./routes/category');
 
 var app = express();
 
@@ -38,6 +39,7 @@ app.use('*', globalVariables);
 // set routes
 app.use('/', routes);
 app.use('/post', post);
+app.use('/category', category);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

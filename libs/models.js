@@ -7,7 +7,10 @@ var models = {};
 //类型
 models.Category = mongoose.model('Category', {
     _id: Number,
-    name: String
+    name: {
+        type: String,
+        required: '类别名称不能为空！'
+    }
 });
 
 //标签

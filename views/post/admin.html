@@ -2,22 +2,41 @@
 {%block content%}
 <div id="content" class="container">
     <div class="row">
-        <div class="col-md-12">
-            <ul class="post-list">
-            {%for post in pageObj.posts%}
-                <li>
-                    <article class="post-info">
-                        <h4><a href="/post/detail/{{post._id}}" target="_blank">{{post.title}}</a></h4>
-                        <div class="post-excerpt">
-                           {{post.excerpt | shorten(140)}}......
-                        </div>
-                        <div class="post-handle-bar">
-                            {{post.createDate | dateFormat('YYYY-MM-DD')}}
-                        </div>
-                    </article>
-                </li>
-            {%endfor%}
+        <div class="col-md-12 admin-nav">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#">帖子管理</a></li>
+                <li role="presentation"><a href="/category/admin">分类管理</a></li>
             </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 admin-toolbar">
+            <a href="/post/create" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> 添加</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+            <thead>
+                <tr>
+                  <th>#</th>
+                  <th>标题</th>
+                  <th>日期</th>
+                  <th>操作</th>
+                </tr>
+            </thead>
+            {%for post in pageObj.posts%}
+                <tr>
+                    <td>{{post._id}}</td>
+                    <td><a href="/post/detail/{{post._id}}" target="_blank">{{post.title}}</a></td>
+                    <td>{{post.createDate | dateFormat('YYYY-MM-DD')}}</td>
+                    <td>
+                    <a href="/post/edit/{{post._id}}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
+                    <a href="javascript:;" class="btn btn-danger btn-xs" data-id="{{post._id}}" data-toggle="removePost"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+                    </td>
+                </tr>
+            {%endfor%}
+            </table>
         </div>
     </div>
     <div class="row">
@@ -26,4 +45,35 @@
         </div>
     </div>
 </div>
+<!-- Message Modal -->
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">消息</h4>
+      </div>
+      <div class="modal-body">
+        <div id="messageContent">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
+{%block js%}
+<script type="text/javascript">
+    $(function() {
+        $('[data-toggle=removePost]').click(function(event) {
+            $e = $(this);
+            $.get('/post/remove.json?id=' + $(this).data('id'), function(data) {
+                if (data.status === 'ok') {
+                    $e.parent('td').parent('tr').detach();
+                }
+                $('#messageContent').text(data.message);
+                $('#messageModal').modal('show');
+            });
+        });
+    });
+</script>
 {%endblock%}

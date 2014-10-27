@@ -2,7 +2,25 @@
 {%block content%}
 <div id="content" class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked side-nav" role="tablist">
+                {%if pageObj.category%}
+                <li role="presentation">
+                  <a href="/post/list">全部</a>
+                </li>
+                {% else %}
+                <li role="presentation" class="active">
+                  <a href="/post/list">全部</a>
+                </li>
+                {%endif%}
+                {%for c in categorys%}
+                <li role="presentation" {%if pageObj.category == c._id%}class="active"{%endif%}>
+                  <a href="/post/list?category={{c._id}}">{{c.name}}</a>
+                </li>
+                {%endfor%}
+            </ul>
+        </div>
+        <div class="col-md-9">
             <ul class="post-list">
             {%for post in pageObj.posts%}
                 <li>

@@ -22,7 +22,7 @@ module.exports = function(env) {
 			href = '?page=';
 		}
 
-		pageHTML += '<ul class="pagination">';
+		pageHTML += '<ul class="pagination pagination-sm">';
 		if (pageObj.page === 1) {
 			pageHTML += '<li class="disabled"><a href="#">&laquo;</a></li>';
 		} else {
