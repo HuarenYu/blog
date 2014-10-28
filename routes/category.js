@@ -41,7 +41,7 @@ router.post('/create.json', auth, function(req, res, next) {
 			});
 		},
 		function(c, cb) {
-			globalVariables.update(function(err, cs) {
+			globalVariables.updateCategory(function(err, cs) {
 				if (err) {
 					cb(err);
 					return;
