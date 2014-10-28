@@ -1,10 +1,9 @@
 var models = require('./models');
 var Category = models.Category;
-var categorys;
 
-module.exports = function(req, res, next) {
-	if (categorys) {
-		req.categorys = categorys;
+exports.set = function(req, res, next) {
+	if (exports.categorys) {
+		req.categorys = exports.categorys;
 		next();
 		return;
 	}
@@ -16,7 +15,20 @@ module.exports = function(req, res, next) {
 				next(err);
 				return;
 			}
-			req.categorys = categorys = cs;
+			req.categorys = exports.categorys = cs;
 			next();
+		});
+};
+
+exports.updateCategory = function(cb) {
+	Category
+		.find()
+		.exec(function(err, cs) {
+			if (err) {
+				cb(err);
+				return;
+			}
+			exports.categorys = cs;
+			cb(null, cs);
 		});
 };

@@ -34,7 +34,7 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public/dist')));
 
 // set global variable
-app.use('*', globalVariables);
+app.use('*', globalVariables.set);
 
 // set routes
 app.use('/', routes);

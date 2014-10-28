@@ -1,8 +1,9 @@
 var express = require('express');
+var async = require('async');
 var router = express.Router();
 var auth = require('../libs/auth');
 var models = require('../libs/models');
-var async = require('async');
+var globalVariables = require('../libs/globalvariables');
 
 var Category = models.Category;
 
@@ -38,8 +39,17 @@ router.post('/create.json', auth, function(req, res, next) {
 				}
 				cb(null, c);
 			});
+		},
+		function(c, cb) {
+			globalVariables.update(function(err, cs) {
+				if (err) {
+					cb(err);
+					return;
+				}
+				cb(null, c, cs);
+			});
 		}
-	], function(err, c) {
+	], function(err, c, cs) {
 		if (err) {
 			err.status = 500;
 			next(err);
