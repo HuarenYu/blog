@@ -1,27 +1,39 @@
 var gulp = require('gulp'),
     less = require('gulp-less'),
     concat = require('gulp-concat'),
+    jshint = require('gulp-jshint'),
+    stylish = require('jshint-stylish'),
     uglify = require('gulp-uglify');
 
 gulp.task('minify-css', function() {
-    return gulp.src(['./public/bootstrap/less/bootstrap.less', './public/less/site.less'])
+    return gulp.src(['./bower_components/bootstrap/less/bootstrap.less', './less/site.less'])
         .pipe(less({
             compress: true
         }))
         .pipe(concat('site.css'))
-        .pipe(gulp.dest('./public/dist/css'));
+        .pipe(gulp.dest('./static/css'));
 });
 
 gulp.task('minify-js', function() {
-    return gulp.src(['./public/jquery/dist/jquery.js', './public/bootstrap/dist/js/bootstrap.js', './public/js/**/*.js'])
+    return gulp.src(['./bower_components/jquery/dist/jquery.js', './bower_components/bootstrap/dist/js/bootstrap.js', './js/**/*.js'])
         .pipe(uglify())
-        .pipe(concat('site.js'))
-        .pipe(gulp.dest('./public/dist/js'));
+        .pipe(gulp.dest('./static/js'));
+});
+
+gulp.task('copy-fonts', function() {
+    return gulp.src(['./bower_components/bootstrap/dist/fonts/*.*'])
+        .pipe(gulp.dest('./static/fonts'));
+});
+
+gulp.task('jshint', function() {
+    gulp.src(['./js/**/*.js'])
+        .pipe(jshint())
+        .pipe(jshint.reporter(stylish));
 });
 
 gulp.task('watch', function() {
-    gulp.watch('./public/**/*.less', ['minify-css']);
-    gulp.watch('./public/js/**/*.js', ['minify-js']);
+    gulp.watch('./less/**/*.less', ['minify-css']);
+    gulp.watch('./js/**/*.js', ['minify-js', 'jshint']);
 });
 
-gulp.task('default', ['watch', 'minify-css', 'minify-js']);
+gulp.task('default', ['minify-css', 'minify-js', 'watch']);

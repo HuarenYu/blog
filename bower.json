@@ -1,0 +1,25 @@
+{
+  "name": "blog",
+  "version": "0.0.1",
+  "homepage": "https://github.com/HuarenYu/blog",
+  "authors": [
+    "tony <yuhuarenproject@gmail.com>"
+  ],
+  "description": "tony's blog",
+  "main": "app.js",
+  "keywords": [
+    "express-blog",
+    "blog"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.0"
+  }
+}

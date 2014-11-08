@@ -1,0 +1,14 @@
+{
+  "database": {
+    "type": "mongodb",
+    "host": "localhost",
+    "port": 27017,
+    "user": "",
+    "password": "",
+    "useDatabase": "blog"
+  },
+  "admin": {
+    "name": "admin",
+    "password": "admin"
+  }
+}

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var auth = require('../libs/auth');
-var models = require('../libs/models');
+var auth = require('../lib/auth');
+var models = require('../lib/models');
 var async = require('async');
 var marked = require('marked');
 

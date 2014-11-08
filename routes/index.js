@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var models = require('../libs/models');
+var models = require('../lib/models');
 
 var Post = models.Post;
 

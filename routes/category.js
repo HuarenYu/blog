@@ -1,9 +1,9 @@
 var express = require('express');
 var async = require('async');
 var router = express.Router();
-var auth = require('../libs/auth');
-var models = require('../libs/models');
-var globalVariables = require('../libs/globalvariables');
+var auth = require('../lib/auth');
+var models = require('../lib/models');
+var globalVariables = require('../lib/globalvariables');
 
 var Category = models.Category;
 

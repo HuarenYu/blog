@@ -1,0 +1,1 @@
+!function(){"use strict";var r=navigator.userAgent;if(/MSIE ([^;]+)/.test(r)){var t=RegExp.$1,e=parseInt(t);9>e&&alert("browser version is too old.")}}();
