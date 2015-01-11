@@ -18,5 +18,5 @@ var airpubConfigs = {
 
 // for backend service
 var duoshuoQuery = {
-  short_name: '{{wenruoblog}}'
+  short_name: 'wenruoblog'
 };
