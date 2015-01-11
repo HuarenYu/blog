@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="airpub" ng-controller="global">
   <head ng-controller="meta">
-    <base href="/blog" />
     <meta charset="UTF-8">
     <title ng-bind="title"></title>
     <meta name="fragment" content="!" />
@@ -17,10 +16,10 @@
   <body ng-controller="base" ng-class="state.current.controller">
     <div ui-view="layout"></div>
     <!-- airpub config file -->
-    <script src="configs.js"></script>
+    <script src="/blog/configs.js"></script>
     <!-- duoshuo embed js -->
     <script src="http://static.duoshuo.com/embed.unstable.js"></script> 
     <!-- airpub angular app -->
-    <script src="dist/airpub.min.js"></script>
+    <script src="/blog/dist/airpub.min.js"></script>
   </body>
 </html>
